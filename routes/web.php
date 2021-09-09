@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', function () {
     return view('home');
 })->name('home');
+
+Route::get('/', function () {
+    return view('layouts.app');
+})->name('layouts');
+
+Route::resource('/comics','ComicController');

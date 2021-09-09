@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Fumetti;
+use App\Comic;
 
 class ComicsTableSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class ComicsTableSeeder extends Seeder
      */
     public function run()
     {
-        $arrayComics = config('comic');
+        $arrayComics = config('comics');
 
         foreach($arrayComics as $fumetto){
             $dettaglio = new Comic();
@@ -20,6 +20,7 @@ class ComicsTableSeeder extends Seeder
             $dettaglio->description = $fumetto['description'];
             $dettaglio->thumb = $fumetto['thumb'];
             $dettaglio->price = $fumetto['price'];
+            $dettaglio->series = $fumetto['series'];
             $dettaglio->sale_date = $fumetto['sale_date'];
             $dettaglio->type = $fumetto['type'];
             $dettaglio->save();
