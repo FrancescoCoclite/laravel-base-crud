@@ -2,6 +2,13 @@
 @section('title', 'Comics')
 @section('content')
     <div class="container">
+        <p>
+            @if (session ('deleted'))
+                <div class="alert alert-success">
+                    {{session ('deleted')}}
+                </div>
+            @endif
+        </p>
         <div class="row mt-5 mb-5">
             <div class="col-12">
                 
@@ -22,8 +29,12 @@
                         <td>{{$fumetto->price}}</td>
                         <td>
                             <a href="{{route('comics.show',$fumetto->id)}}" class="btn btn-primary">Info</a>
-                            <a href="" class="btn btn-secondary">Edit</a>
-                            <a href="" class="btn btn-danger">Delate</a>
+                            <a href="{{route('comics.edit',$fumetto->id)}}" class="btn btn-success">Edit</a>
+                            <form action="{{ route ('comics.destroy', $fumetto->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Delete" class="btn btn-danger">
+                            </form>  
                     
                         </td>
                         </tr>
